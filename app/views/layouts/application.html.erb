@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>KodiusZadatak</title>
+    <title>Kodius task</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "layout", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_importmap_tags %>
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+      </script>
+    <![endif]-->
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "layouts/header" %>
+    <div class="container">
+      <% flash.each do |message_type, message| %>
+        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <% end %>
+      
+      <%= yield %>
+
+      <%= debug(params) if Rails.env.development? %>
+    </div>
   </body>
 </html>

@@ -12,4 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *=require layout.css
  */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";

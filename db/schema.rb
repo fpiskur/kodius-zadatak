@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_24_150235) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_24_155610) do
   create_table "rooms", force: :cascade do |t|
     t.integer "number"
     t.string "name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_150235) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["price_per_day"], name: "index_rooms_on_price_per_day"
   end
 
   create_table "users", force: :cascade do |t|

@@ -2,8 +2,14 @@
   <div class="container">
   <%= link_to "Kodius task", root_path, id: "logo" %>
   <% if logged_in? %>
-    <%= link_to "Log out", logout_path, data: { "turbo-method": :delete },
+    <div class="user-options">
+      <%= link_to "Log out", logout_path, data: { "turbo-method": :delete },
                                           id: "logout-link" %>
+      <%= link_to "delete account", current_user, data: {
+                                          "turbo-method": :delete,
+                                          "turbo-confirm": "Are you sure?" },
+                                          id: "delete-user-link" %>
+    </div>
   <% end %>
   </div>
 </header>

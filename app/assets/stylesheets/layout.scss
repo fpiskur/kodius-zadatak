@@ -72,11 +72,20 @@ p {
   font-weight: bold;
 }
 
-#logout-link {
-  color: white;
+.user-options {
+  display: flex;
   float: right;
-  font-size: 1.2em;
-  padding-top: 13px;
+  justify-content: space-between;
+  gap: 20px;
+  a {
+    color: white;
+    // float: right;
+    font-size: 1.2em;
+    padding-top: 13px;
+  }
+  #delete-user-link {
+    color: red;
+  }
 }
 
 /* miscellaneous */

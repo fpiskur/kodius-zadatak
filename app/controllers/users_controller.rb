@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :logged_in_user, only: [:edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: [:destroy]
+  before_action :correct_user,   only: [:edit, :update, :destroy]
+  # before_action :admin_user,     only: [:destroy]
 
   def new
     @user = User.new
@@ -19,6 +19,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to root_url
+    else
+      render 'edit', status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    flash[:success] = "Your account has been deleted"
+    redirect_to root_url
+  end
+
   private
 
     def user_params
@@ -33,8 +52,8 @@ class UsersController < ApplicationController
     end
 
     # Confirms an admin user
-    def admin_user
-      redirect_to root_url unless current_user.admin?
-    end
+    # def admin_user
+    #   redirect_to root_url unless current_user.admin?
+    # end
 
 end

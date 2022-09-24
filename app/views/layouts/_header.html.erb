@@ -3,12 +3,13 @@
   <%= link_to "Kodius task", root_path, id: "logo" %>
   <% if logged_in? %>
     <div class="user-options">
-      <%= link_to "Log out", logout_path, data: { "turbo-method": :delete },
-                                          id: "logout-link" %>
+      <%= link_to "edit info", edit_user_path(current_user), id: "edit-user-info" %>
       <%= link_to "delete account", current_user, data: {
                                           "turbo-method": :delete,
                                           "turbo-confirm": "Are you sure?" },
                                           id: "delete-user-link" %>
+      <%= link_to "Log out", logout_path, data: { "turbo-method": :delete },
+                                          id: "logout-link" %>
     </div>
   <% end %>
   </div>

@@ -20,3 +20,16 @@ User.create!(
   activated: true,
   activated_at: Time.zone.now
 )
+
+1.upto(5) do |n|
+  1.upto(5) do |m|
+    number = (n.to_s + m.to_s).to_i
+    name = Faker::Mountain.unique.name
+    price_per_day = Faker::Number.number(digits: 2)
+    description = Faker::Lorem.paragraph(sentence_count: 4)
+    Room.create!( number: number,
+                  name: name,
+                  price_per_day: price_per_day,
+                  description: description)
+  end
+end

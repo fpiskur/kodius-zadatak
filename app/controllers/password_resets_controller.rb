@@ -33,7 +33,7 @@ class PasswordResetsController < ApplicationController
       log_in @user
       @user.update_attribute(:reset_digest, nil)
       flash[:success] = "Password has been reset."
-      redirect_to @user
+      redirect_to root_url
     else
       render 'edit', status: :unprocessable_entity
     end

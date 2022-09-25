@@ -1,11 +1,11 @@
 module ApplicationHelper
 
-  def is_active_path?(link_path)
-    if current_page?(link_path)
-      "active"
-    else
-      ""
+  def active_class(*link_paths)
+    activeClass = ""
+    link_paths.each do |link_path|
+      activeClass = "active" if current_page?(link_path)
     end
+    activeClass
   end
 
 end

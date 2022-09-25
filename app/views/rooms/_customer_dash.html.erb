@@ -10,7 +10,7 @@
         <%= form.label :price_to, "to:" %>
         <%= form.number_field :price_to, step: 1, min: 0, max: 99, class: 'form-control' %>
 
-        <%= form.submit "Filter", class: 'btn btn-primary' %>
+        <%= form.submit "Filter", name: nil, class: 'btn btn-primary' %>
       </div>
     <% end %>
   </div>
@@ -24,7 +24,7 @@
         <%= form.label :date_to, "to:" %>
         <%= form.date_field :date_to, class: "form-control" %>
 
-        <%= form.submit "Filter", class: 'btn btn-primary' %>
+        <%= form.submit "Filter", name: nil, class: 'btn btn-primary' %>
       </div>
     <% end %>
   </div>
@@ -42,7 +42,6 @@
         <div class="room-price">
           Price per day: <%= room.price_per_day %> &euro;
         </div>
-        <div class="room-pictures"></div>
       </li>
     <% end %>
   </ul>

@@ -4,13 +4,13 @@ class RoomsController < ApplicationController
 
   def index
     if current_user.admin?
-      if params[:q] && params[:q] == 'available'
-        @reservations = Reservation.where("check_out_at < ? OR check_in_at > ?", Date.today, Date.today)
-      elsif params[:q] && params[:q] == 'booked'
+      # default list (for 'available' rooms)
+      @reservations = Reservation.where("check_out_at < ? OR check_in_at > ?", Date.today, Date.today)
+
+      if params[:q] && params[:q] == 'booked'
         @reservations = Reservation.where("check_in_at <= ? AND check_out_at > ?", Date.today, Date.today)
-      else  # Available rooms by default - REFACTOR THIS
-        @reservations = Reservation.where("check_out_at < ? OR check_in_at > ?", Date.today, Date.today)
       end
+      
     else
       @rooms = Room.all
     end

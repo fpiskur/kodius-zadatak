@@ -1,1 +1,35 @@
-<h1>This is for customers</h1>
+<h1>Customer dashboard</h1>
+<div class="rooms-filter">
+  <div class="price-filter">
+    <%= form_with(url: rooms_path, method: :get, data: {turbo_frame: "rooms"}, html: { autocomplete: "off" }) do |form| %>
+    <h3>Filter by price</h3>
+      <div>
+        <%= form.label :price_from, "from:" %>
+        <%= form.number_field :price_from, step: 1, min: 0, max: 99, class: 'form-control' %>
+
+        <%= form.label :price_to, "to:" %>
+        <%= form.number_field :price_to, step: 1, min: 0, max: 99, class: 'form-control' %>
+
+        <%= form.submit "Filter", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="rooms-list">
+  <ul>
+    <% @rooms.each do |room| %>
+      <li>
+        <div class="room-name">
+          #<%= room.number %> - <%= room.name %>
+        </div>
+        <div class="room-description">
+          <%= room.description %>
+        </div>
+        <div class="room-price">
+          Price per day: <%= room.price_per_day %> &euro;
+        </div>
+        <div class="room-pictures"></div>
+      </li>
+    <% end %>
+  </ul>
+</div>

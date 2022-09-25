@@ -1,10 +1,10 @@
 <h1>Admin dashboard</h1>
 <div class="rooms-filter">
-  <%= link_to "Available rooms today", rooms_path(q: :available),
-        class: active_class(rooms_path(q: :available), root_path, rooms_path) %>
+  <%= link_to "Available rooms today", rooms_path(status: :available),
+        class: active_class(rooms_path(status: :available), root_path, rooms_path) %>
 
-  <%= link_to "Booked rooms today", rooms_path(q: :booked),
-        class: active_class(rooms_path(q: :booked)) %>
+  <%= link_to "Booked rooms today", rooms_path(status: :booked),
+        class: active_class(rooms_path(status: :booked)) %>
 </div>
 <div class="rooms-list">
   <ul>

@@ -7,12 +7,18 @@ class RoomsController < ApplicationController
       # default list (for 'available' rooms)
       @rooms = Room.joins(:reservations).where("check_out_at < ? OR check_in_at > ?", Date.today, Date.today).uniq
 
-      if params[:q] && params[:q] == 'booked'
+      if params[:status] && params[:status] == 'booked'
         @rooms = Room.joins(:reservations).where("check_in_at <= ? AND check_out_at > ?", Date.today, Date.today)
       end
 
     else
-      @rooms = Room.all
+      if params[:price_from] && params[:price_to]
+        @rooms = Room.all.where("price_per_day >= ? AND price_per_day <= ?", params[:price_from], params[:price_to])
+        render locals: { from: params[:price_from], to: params[:price_to] }
+      else
+        @rooms = Room.all
+      end
+      
     end
   end
 

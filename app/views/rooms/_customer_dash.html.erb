@@ -14,6 +14,20 @@
       </div>
     <% end %>
   </div>
+  <div class="date-filter">
+    <%= form_with(url: rooms_path, method: :get, data: {turbo_frame: "rooms"}, html: { autocomplete: "off" }) do |form| %>
+    <h3>Filter by date range</h3>
+      <div>
+        <%= form.label :date_from, "from:" %>
+        <%= form.date_field :date_from, class: "form-control" %>
+
+        <%= form.label :date_to, "to:" %>
+        <%= form.date_field :date_to, class: "form-control" %>
+
+        <%= form.submit "Filter", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
 </div>
 <div class="rooms-list">
   <ul>

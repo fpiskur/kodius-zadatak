@@ -20,6 +20,10 @@
       background-color: #f3f3f3;
     }
   }
+
+  form div {
+    width: 100%;
+  }
 }
 
 .rooms-list ul {
@@ -42,15 +46,12 @@
   box-shadow: inset 0px -5px 0px 0px blue;
 }
 
-.price-filter {
+.price-filter,
+.date-filter {
   padding: 20px;
+  flex-grow: 1;
 
   h3 {
     margin-top: 0;
-  }
-
-  .form-control {
-    display: inline-block;
-    width: auto;
   }
 }

@@ -8,16 +8,16 @@
 </div>
 <div class="rooms-list">
   <ul>
-    <% @reservations.each do |reservation| %>
+    <% @rooms.each do |room| %>
       <li>
         <div class="room-name">
-          #<%= reservation.room.number %> - <%= reservation.room.name %>
+          #<%= room.number %> - <%= room.name %>
         </div>
         <div class="room-description">
-          <%= reservation.room.description %>
+          <%= room.description %>
         </div>
         <div class="room-price">
-          Price per day: <%= reservation.room.price_per_day %> &euro;
+          Price per day: <%= room.price_per_day %> &euro;
         </div>
         <div class="room-pictures"></div>
       </li>

@@ -5,12 +5,12 @@ class RoomsController < ApplicationController
   def index
     if current_user.admin?
       # default list (for 'available' rooms)
-      @reservations = Reservation.where("check_out_at < ? OR check_in_at > ?", Date.today, Date.today)
+      @rooms = Room.joins(:reservations).where("check_out_at < ? OR check_in_at > ?", Date.today, Date.today).uniq
 
       if params[:q] && params[:q] == 'booked'
-        @reservations = Reservation.where("check_in_at <= ? AND check_out_at > ?", Date.today, Date.today)
+        @rooms = Room.joins(:reservations).where("check_in_at <= ? AND check_out_at > ?", Date.today, Date.today)
       end
-      
+
     else
       @rooms = Room.all
     end

@@ -50,3 +50,8 @@ Reservation.create!(room_id: 12,
                     user_id: 2,
                     check_in_at: (Date.today + 8).to_fs,
                     check_out_at: (Date.today + 13).to_fs)
+
+Reservation.create!(room_id: 15,
+                    user_id: 2,
+                    check_in_at: (Date.today + 5).to_fs,
+                    check_out_at: (Date.today + 10).to_fs)

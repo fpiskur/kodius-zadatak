@@ -1,0 +1,25 @@
+<h1>Admin dashboard</h1>
+<div class="room-filter">
+  <%= link_to "Available rooms today", rooms_path(q: :available),
+                            class: is_active_path?(rooms_path(q: :available)) %>
+  <%= link_to "Booked rooms today", rooms_path(q: :booked),
+                            class: is_active_path?(rooms_path(q: :booked)) %>
+</div>
+<div class="rooms-list">
+  <ul>
+    <% @rooms.each do |room| %>
+      <li>
+        <div class="room-name">
+          #<%= room.number %> - <%= room.name %>
+        </div>
+        <div class="room-description">
+          <%= room.description %>
+        </div>
+        <div class="room-price">
+          price per day: <%= room.price_per_day %> &euro;
+        </div>
+        <div class="room-pictures"></div>
+      </li>
+    <% end %>
+  </ul>
+</div>

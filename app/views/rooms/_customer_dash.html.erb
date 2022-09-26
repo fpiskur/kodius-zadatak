@@ -33,16 +33,17 @@
   <ul>
     <% @rooms.each do |room| %>
       <li>
-        <div class="room-name">
-          #<%= room.number %> - <%= room.name %>
-        </div>
-        <div class="room-description">
-          <%= room.description %>
-        </div>
-        <div class="room-price">
-          Price per day: <%= room.price_per_day %> &euro;<br>
-          id: <%= room.id %>
-        </div>
+        <%= link_to room do %>
+          <div class="room-name">
+            #<%= room.number %> - <%= room.name %>
+          </div>
+          <div class="room-description">
+            <%= room.description %>
+          </div>
+          <div class="room-price">
+            Price per day: <%= room.price_per_day %> &euro;
+          </div>
+        <% end %>
       </li>
     <% end %>
   </ul>

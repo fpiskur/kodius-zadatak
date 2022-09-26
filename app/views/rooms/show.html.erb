@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="room-images">
-    
+
     </div>
     <div class="room-name">
       <h1>#<%= @room.number %> - <%= @room.name %></h1>
@@ -10,7 +10,26 @@
       <%= @room.description %>
     </div>
     <div class="room-price">
-      Price per day: <strong><%= @room.price_per_day %> &euro;<strong>
+      Price per day: <strong><%= @room.price_per_day %> &euro;</strong>
+    </div>
+    <div class="room-reservations">
+      <%= form_with(model: @room.reservations.build,
+                    url: [@room, @room.reservations.build],
+                    local: true) do |form| %>
+        <h3>Booking</h3>
+          <%= render 'shared/error_messages', object: form.object %>
+          <div>
+            <%#= hidden_field_tag :user_id, current_user.id %>
+
+            <%= form.label :check_in_at, "Check in at:" %>
+            <%= form.date_field :check_in_at, class: "form-control", min: Date.today %>
+
+            <%= form.label :check_out_at, "Check out at:" %>
+            <%= form.date_field :check_out_at, class: "form-control", min: Date.today %>
+
+            <%= form.submit "Make reservation", name: nil, class: 'btn btn-primary' %>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>

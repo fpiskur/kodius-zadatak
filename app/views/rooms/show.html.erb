@@ -1,10 +1,12 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <div class="room-images">
-
-    </div>
     <div class="room-name">
       <h1>#<%= @room.number %> - <%= @room.name %></h1>
+    </div>
+    <div class="room-images">
+      <% @room.images.each do |image| %>
+        <%= image_tag image.url %>
+      <% end %>
     </div>
     <div class="room-description">
       <%= @room.description %>
@@ -19,7 +21,6 @@
         <h3>Booking</h3>
           <%= render 'shared/error_messages', object: form.object %>
           <div>
-            <%#= hidden_field_tag :user_id, current_user.id %>
 
             <%= form.label :check_in_at, "Check in at:" %>
             <%= form.date_field :check_in_at, class: "form-control", min: Date.today %>

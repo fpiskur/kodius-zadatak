@@ -55,3 +55,15 @@
     margin-top: 0;
   }
 }
+
+.room-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  img {
+    width: 40%;
+  }
+}

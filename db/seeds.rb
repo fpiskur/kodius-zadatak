@@ -35,6 +35,14 @@ User.create!(
   end
 end
 
+# Add images to rooms
+25.times do |n|
+  8.times do |m|
+    Image.create!(room_id: n+1,
+                       url: "https://picsum.photos/seed/#{n+m}/960/480") # random image generator with seed
+  end
+end
+
 # Create reservations
 Reservation.create!(room_id: 1,
                     user_id: 2,

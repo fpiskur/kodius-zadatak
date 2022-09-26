@@ -10,13 +10,13 @@
         <%= form.label :price_to, "to:" %>
         <%= form.number_field :price_to, step: 1, min: 0, max: 99, class: 'form-control' %>
 
-        <%= form.submit "Filter", name: nil, class: 'btn btn-primary' %>
+        <%= form.submit "Apply filter", name: nil, class: 'btn btn-primary' %>
       </div>
     <% end %>
   </div>
   <div class="date-filter">
     <%= form_with(url: rooms_path, method: :get, data: {turbo_frame: "rooms"}, html: { autocomplete: "off" }) do |form| %>
-    <h3>Filter by date range</h3>
+    <h3>Filter by availability</h3>
       <div>
         <%= form.label :date_from, "from:" %>
         <%= form.date_field :date_from, class: "form-control" %>
@@ -24,7 +24,7 @@
         <%= form.label :date_to, "to:" %>
         <%= form.date_field :date_to, class: "form-control" %>
 
-        <%= form.submit "Filter", name: nil, class: 'btn btn-primary' %>
+        <%= form.submit "Apply filter", name: nil, class: 'btn btn-primary' %>
       </div>
     <% end %>
   </div>

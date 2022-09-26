@@ -17,6 +17,8 @@ class RoomsController < ApplicationController
         render locals: { from: params[:price_from], to: params[:price_to] }
       elsif params[:date_from] && params[:date_to]
         # @rooms = Room.joins(:reservations).where.not("")
+      else
+        @rooms = Room.all
       end
       
     end

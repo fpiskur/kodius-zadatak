@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :rooms do
     resources :reservations,        only: [:create]
-    resources :images
   end
 
 end

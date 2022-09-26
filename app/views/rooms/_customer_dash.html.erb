@@ -5,10 +5,10 @@
     <h3>Filter by price</h3>
       <div>
         <%= form.label :price_from, "from:" %>
-        <%= form.number_field :price_from, step: 1, min: 0, max: 99, class: 'form-control' %>
+        <%= form.number_field :price_from, step: 1, min: 0, max: 99, class: 'form-control', value: params[:price_from] %>
 
         <%= form.label :price_to, "to:" %>
-        <%= form.number_field :price_to, step: 1, min: 0, max: 99, class: 'form-control' %>
+        <%= form.number_field :price_to, step: 1, min: 0, max: 99, class: 'form-control', value: params[:price_to] %>
 
         <%= form.submit "Apply filter", name: nil, class: 'btn btn-primary' %>
       </div>
@@ -19,10 +19,10 @@
     <h3>Filter by availability</h3>
       <div>
         <%= form.label :date_from, "from:" %>
-        <%= form.date_field :date_from, class: "form-control" %>
+        <%= form.date_field :date_from, class: "form-control", min: Date.today, value: params[:date_from] %>
 
         <%= form.label :date_to, "to:" %>
-        <%= form.date_field :date_to, class: "form-control" %>
+        <%= form.date_field :date_to, class: "form-control", min: Date.today, value: params[:date_to] %>
 
         <%= form.submit "Apply filter", name: nil, class: 'btn btn-primary' %>
       </div>
@@ -40,7 +40,8 @@
           <%= room.description %>
         </div>
         <div class="room-price">
-          Price per day: <%= room.price_per_day %> &euro;
+          Price per day: <%= room.price_per_day %> &euro;<br>
+          id: <%= room.id %>
         </div>
       </li>
     <% end %>

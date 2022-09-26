@@ -16,7 +16,10 @@ class RoomsController < ApplicationController
         @rooms = Room.all.where("price_per_day >= ? AND price_per_day <= ?", params[:price_from], params[:price_to])
         render locals: { from: params[:price_from], to: params[:price_to] }
       elsif params[:date_from] && params[:date_to]
-        # @rooms = Room.joins(:reservations).where.not("")
+        sql = ":date_to >= check_in_at AND check_out_at >= :date_from"
+        @rooms = Room.left_outer_joins(:reservations).where.not(sql,
+              date_to: params[:date_to], date_from: params[:date_from]).or(Room.where.missing(:reservations)).order(:number).uniq
+        # @rooms_to_add = Room.where.missing(:reservations)
       else
         @rooms = Room.all
       end

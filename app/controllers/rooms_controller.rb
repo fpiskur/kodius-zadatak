@@ -19,7 +19,9 @@ class RoomsController < ApplicationController
       if params[:price_from] && params[:price_to]
         @rooms = Room.where("price_per_day >= ? AND price_per_day <= ?", params[:price_from], params[:price_to]).order(:price_per_day)
       elsif params[:date_from] && params[:date_to]
+        # Get any overlaps
         sql = ":date_to >= check_in_at AND check_out_at >= :date_from"
+        # Get rooms where no overlap exists in reservations + rooms with no reservations yet
         @rooms = Room.left_outer_joins(:reservations).where.not(sql,
               date_to: params[:date_to], date_from: params[:date_from]).or(Room.where.missing(:reservations)).order(:number).uniq
       else

@@ -10,8 +10,8 @@ class ReservationsController < ApplicationController
       flash[:success] = "Reservation saved!"
       redirect_to root_url
     else
-      flash[:danger] = "Error saving reservation"
-      redirect_to room_path(@room)
+      flash.now[:danger] = "Error saving reservation"
+      render 'rooms/show', status: :unprocessable_entity
     end
   end
 

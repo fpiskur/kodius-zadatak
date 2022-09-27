@@ -15,13 +15,12 @@
       Price per day: <strong><%= @room.price_per_day %> &euro;</strong>
     </div>
     <div class="room-reservations">
-      <%= form_with(model: @room.reservations.build,
-                    url: [@room, @room.reservations.build],
+      <%= form_with(model: @reservation,
+                    url: [@room, @reservation],
                     local: true) do |form| %>
         <h3>Booking</h3>
           <%= render 'shared/error_messages', object: form.object %>
           <div>
-
             <%= form.label :check_in_at, "Check in at:" %>
             <%= form.date_field :check_in_at, class: "form-control", min: Date.today %>
 

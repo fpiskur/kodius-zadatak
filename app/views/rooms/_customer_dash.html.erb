@@ -5,10 +5,10 @@
     <h3>Filter by price</h3>
       <div>
         <%= form.label :price_from, "from:" %>
-        <%= form.number_field :price_from, step: 1, min: 0, max: 99, class: 'form-control', value: params[:price_from] %>
+        <%= form.number_field :price_from, step: 1, min: 0, class: 'form-control', value: params[:price_from] %>
 
         <%= form.label :price_to, "to:" %>
-        <%= form.number_field :price_to, step: 1, min: 0, max: 99, class: 'form-control', value: params[:price_to] %>
+        <%= form.number_field :price_to, step: 1, min: 0, class: 'form-control', value: params[:price_to] %>
 
         <%= form.submit "Apply filter", name: nil, class: 'btn btn-primary' %>
       </div>

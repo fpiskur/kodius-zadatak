@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   def send_custom_message
     message = params[:message]
-    users = User.all
+    users = User.joins(:reservations).where("check_in_at <= ? AND check_out_at > ?", Date.today, Date.today)
     users.each do |user|
       if !user.admin?
         user.message = message

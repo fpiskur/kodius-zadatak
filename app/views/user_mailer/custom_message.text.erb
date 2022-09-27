@@ -2,4 +2,4 @@ Hi <%= @user.name %>,
 
 The hotel you are staying in has a message for you:
 
-<%= @user.message %>
+<%= sanitize @user.message %>

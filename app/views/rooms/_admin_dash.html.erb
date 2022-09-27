@@ -1,4 +1,13 @@
 <h1>Admin dashboard</h1>
+<div class="message-form">
+  <%= form_with(url: message_path(current_user),
+                local: true) do |form| %>
+    <%= form.label :message, "Send a message to all users currently in the hotel" %>
+    <%= form.text_field :message, class: 'form-control' %>
+
+    <%= form.submit "Send", class: 'btn btn-primary' %>
+  <% end %>
+</div>
 <div class="rooms-filter">
   <%= link_to "Available rooms today", rooms_path(status: :available),
         class: active_class(rooms_path(status: :available), root_path, rooms_path) %>

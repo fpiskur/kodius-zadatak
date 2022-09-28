@@ -43,7 +43,10 @@ class RoomsController < ApplicationController
 
     def validate_price_range
       if params[:price_from] && params[:price_to]
-        if params[:price_from] > params[:price_to]
+        if params[:price_from].blank? || params[:price_to].blank?
+          flash[:danger] = 'Please set both "price from" and "price to"!'
+          redirect_to rooms_path
+        elsif params[:price_from] > params[:price_to]
           flash[:danger] = '"Price from" cannot be larger than "Price to"'
           redirect_to rooms_path
         elsif params[:price_from].to_i < 0

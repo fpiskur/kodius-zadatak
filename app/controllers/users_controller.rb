@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:info] = "Please check your email to activate your account."
+      flash[:info] = "Please check your email to activate your account. (check your spam folder)"
       redirect_to login_url
     else
       render 'new', status: :unprocessable_entity
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.destroy
     flash[:success] = "Your account has been deleted"
-    redirect_to root_url
+    redirect_to login_url
   end
 
   def send_custom_message
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
         user.send_custom_message_email
       end
     end
-    flash[:info] = "Email sent to all present customers"
+    flash[:success] = "Email sent to all present customers"
     redirect_to root_url
   end
 

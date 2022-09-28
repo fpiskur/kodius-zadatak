@@ -13,7 +13,7 @@ class PasswordResetsController < ApplicationController
       @user.create_reset_digest
       @user.send_password_reset_email
       flash[:info] = "Email sent with password reset instructions (check your spam folder)"
-      redirect_to root_url
+      redirect_to login_url
     else
       flash.now[:danger] = "Email address not found"
       render 'new', status: :unprocessable_entity

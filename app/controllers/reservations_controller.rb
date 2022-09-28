@@ -28,7 +28,7 @@ class ReservationsController < ApplicationController
 
     def reservation_available
       # Get any overlaps
-      sql = ":check_out_at >= check_in_at AND check_out_at >= :check_in_at"
+      sql = ":check_out_at >= check_in_at AND check_out_at > :check_in_at"
       reservations = @room.reservations.where(sql,
               check_out_at: params[:reservation][:check_out_at], check_in_at: params[:reservation][:check_in_at])
       # In case there are overlaps display flash message

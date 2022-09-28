@@ -39,6 +39,25 @@
     &:last-child {
       border: none;
     }
+
+    .room-name {
+      font-weight: 600;
+    }
+  }
+}
+
+.rooms-list ul.customer-list li {
+  padding: 0;
+
+  a {
+    display: block;
+    padding: 20px 20px;
+    color: inherit;
+
+    &:hover, &:active {
+      text-decoration: none;
+      background-color: #f3f3f3;
+    }
   }
 }
 

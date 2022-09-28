@@ -51,7 +51,7 @@ Reservation.create!(room_id: 1,
 
 Reservation.create!(room_id: 6,
                     user_id: 2,
-                    check_in_at: Date.yesterday.to_fs,
+                    check_in_at: Date.today.to_fs,
                     check_out_at: Date.tomorrow.to_fs)
 
 Reservation.create!(room_id: 12,

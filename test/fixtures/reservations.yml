@@ -2,12 +2,12 @@
 
 one:
   room: one
-  user: one
+  user: customer_active
   check_in_at: 2022-09-24
   check_out_at: 2022-09-24
 
 two:
   room: two
-  user: two
+  user: other_active
   check_in_at: 2022-09-24
   check_out_at: 2022-09-24

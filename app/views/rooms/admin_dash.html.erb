@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Admin dashboard</h1>
+    <div class="message-form">
+      <%= form_with(url: message_path(current_user),
+                    local: true) do |form| %>
+        <%= form.label :message, "Send a message to all users currently in the hotel" %>
+        <%= form.text_field :message, class: 'form-control' %>
+
+        <%= form.submit "Send", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+    <div class="rooms-filter">
+      <%= link_to "Available rooms today", rooms_path(status: :available),
+            class: active_class(rooms_path(status: :available), root_path, rooms_path) %>
+
+      <%= link_to "Booked rooms today", rooms_path(status: :booked),
+            class: active_class(rooms_path(status: :booked)) %>
+    </div>
+    <div class="rooms-list">
+      <ul>
+        <% @rooms.each do |room| %>
+          <li>
+            <div class="room-name">
+              #<%= room.number %> - <%= room.name %>
+            </div>
+            <div class="room-description">
+              <%= room.description %>
+            </div>
+            <div class="room-price">
+              Price per day: <%= room.price_per_day %> &euro;
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

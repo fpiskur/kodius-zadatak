@@ -12,4 +12,9 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def role_home_template
+      user_role = current_user.admin? ? 'admin' : 'customer'
+      "#{user_role}_dash"
+    end
+
 end

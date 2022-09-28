@@ -6,29 +6,9 @@ class RoomsController < ApplicationController
 
   def index
     if current_user.admin?
-      # default list (for available rooms today)
-      @rooms = Room.distinct.left_outer_joins(:reservations).where("check_out_at <= ? OR check_in_at > ?",
-                          Date.today, Date.today).or(
-                            Room.distinct.where.missing(:reservations)).order(:number)
-      # List of booked rooms today
-      if params[:status] && params[:status] == 'booked'
-        @rooms = Room.joins(:reservations).where("check_in_at <= ? AND check_out_at > ?", Date.today, Date.today)
-      end
-
+      admin_dashboard
     else  # For when user is a customer
-      @rooms = Room.all
-      # Price filter
-      if params[:price_from] && params[:price_to]
-        @rooms = Room.where("price_per_day >= ? AND price_per_day <= ?", params[:price_from], params[:price_to]).order(:price_per_day)
-      # Date range filter
-      elsif params[:date_from] && params[:date_to]
-        # Get any overlaps
-        sql = ":date_to >= check_in_at AND check_out_at > :date_from"
-        # Get rooms where no overlap exists in reservations + rooms with no reservations yet
-        @rooms = Room.distinct.left_outer_joins(:reservations).where.not(sql,
-              date_to: params[:date_to], date_from: params[:date_from]).or(Room.distinct.where.missing(:reservations)).order(:number)
-      end
-      
+      customer_dashboard
     end
   end
 
@@ -64,6 +44,35 @@ class RoomsController < ApplicationController
           redirect_to rooms_path
         end
       end
+    end
+
+    def admin_dashboard
+      sql = "check_in_at <= ? AND check_out_at > ?"
+      # default list (for available rooms today)
+      @rooms = Room.distinct.left_outer_joins(:reservations).where.not(sql,
+                            Date.today, Date.today).or(
+                            Room.distinct.where.missing(:reservations)).order(:number)
+      # List of booked rooms today
+      if params[:status] && params[:status] == 'booked'
+        @rooms = Room.joins(:reservations).where(sql, Date.today, Date.today)
+      end
+      render role_home_template
+    end
+
+    def customer_dashboard
+      @rooms = Room.all
+      # Price filter
+      if params[:price_from] && params[:price_to]
+        @rooms = Room.where("price_per_day >= ? AND price_per_day <= ?", params[:price_from], params[:price_to]).order(:price_per_day)
+      # Date range filter
+      elsif params[:date_from] && params[:date_to]
+        # Get any overlaps
+        sql = ":date_to >= check_in_at AND check_out_at > :date_from"
+        # Get rooms where no overlap exists in reservations + rooms with no reservations yet
+        @rooms = Room.distinct.left_outer_joins(:reservations).where.not(sql,
+              date_to: params[:date_to], date_from: params[:date_from]).or(Room.distinct.where.missing(:reservations)).order(:number)
+      end
+      render role_home_template
     end
 
 end

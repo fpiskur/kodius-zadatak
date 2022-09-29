@@ -1,0 +1,28 @@
+.rooms-status {
+  display: flex;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  margin-bottom: 30px;
+
+  a {
+    padding: 20px 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+
+    &:first-child {
+      display: inline-block;
+      border-right: 1px solid #aaa;
+    }
+
+    &:hover,
+    &:active {
+      text-decoration: none;
+      background-color: #f3f3f3;
+    }
+  }
+}
+
+.active {
+  box-shadow: inset 0px -5px 0px 0px blue;
+}

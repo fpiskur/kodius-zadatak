@@ -10,7 +10,7 @@
         <%= form.submit "Send", class: 'btn btn-primary' %>
       <% end %>
     </div>
-    <div class="rooms-filter">
+    <div class="rooms-status">
       <%= link_to "Available rooms today", rooms_path(status: :available),
             class: active_class(rooms_path(status: :available), root_path, rooms_path) %>
 

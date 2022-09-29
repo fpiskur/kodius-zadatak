@@ -1,36 +1,36 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <h1>Customer dashboard for <%= current_user.name %></h1>
-    <div class="rooms-filter">
-      <div class="price-filter">
-        <%= form_with(url: rooms_path, method: :get, data: {turbo_frame: "rooms"}, html: { autocomplete: "off" }) do |form| %>
-        <h3>Filter by price</h3>
+
+    <%= form_with(url: rooms_path, method: :get, html: { autocomplete: "off" }, class: "rooms-filter-form") do |form| %>
+
+      <div class="rooms-filter">
+        <div class="price-filter">
+          <h3>Filter by price</h3>
           <div>
             <%= form.label :price_from, "from:" %>
             <%= form.number_field :price_from, step: 1, min: 0, class: 'form-control', value: params[:price_from] %>
 
             <%= form.label :price_to, "to:" %>
             <%= form.number_field :price_to, step: 1, min: 0, class: 'form-control', value: params[:price_to] %>
-
-            <%= form.submit "Apply filter", name: nil, class: 'btn btn-primary' %>
           </div>
-        <% end %>
-      </div>
-      <div class="date-filter">
-        <%= form_with(url: rooms_path, method: :get, data: {turbo_frame: "rooms"}, html: { autocomplete: "off" }) do |form| %>
-        <h3>Filter by availability</h3>
+        </div>
+        <div class="date-filter">
+          <h3>Filter by availability</h3>
           <div>
             <%= form.label :date_from, "from:" %>
             <%= form.date_field :date_from, class: "form-control", min: Date.today, value: params[:date_from] %>
 
             <%= form.label :date_to, "to:" %>
             <%= form.date_field :date_to, class: "form-control", min: Date.today, value: params[:date_to] %>
-
-            <%= form.submit "Apply filter", name: nil, class: 'btn btn-primary' %>
           </div>
-        <% end %>
+        </div>
       </div>
-    </div>
+      <%= form.submit "Apply filters", name: nil, class: 'btn btn-primary' %>
+      <%= link_to "Reset filters", rooms_path(price_from: '', price_to: '', date_from: '', date_to: ''),
+                                   class: 'btn btn-primary' %>
+
+    <% end %>
     <div class="rooms-list">
       <ul class="customer-list">
         <% @rooms.each do |room| %>

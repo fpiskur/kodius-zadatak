@@ -1,0 +1,38 @@
+.rooms-filter-form {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  padding: 20px;
+
+  .rooms-filter {
+    display: flex;
+    justify-content: space-around;
+    gap: 40px;
+    margin-bottom: 20px;
+  }
+}
+
+.price-filter,
+.date-filter {
+  flex-grow: 1;
+
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.rooms-list ul.customer-list li {
+  padding: 0;
+
+  a {
+    display: block;
+    padding: 20px;
+    color: inherit;
+
+    &:hover,
+    &:active {
+      text-decoration: none;
+      background-color: #f3f3f3;
+    }
+  }
+}

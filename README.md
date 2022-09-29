@@ -5,8 +5,11 @@ See it live at: https://protected-taiga-38192.herokuapp.com/
 **Functionalities:**
 
  **- User management (login, logout, password reset...**
+ 
  **- Adminstrative dashboard for overlooking state of the hotel rooms in the accommodation for receptionists.**
- - Dashboard with statistics
+ - Dashboard with statistics:
+
+
 		1. Available rooms on today’s date
 		2. Booked rooms on today’s date
 
@@ -25,6 +28,7 @@ https://docs.djangoproject.com/en/3.2/howto/initial-data
 
 ---
 **Intro**
+
 To complete this task I worked with several presumptions:
 
  - people staying in the hotel are booking overnight stay, so check-in date and check-out date cannot be the same, and new check-in can be made on the same day as the check-out from another user
@@ -44,3 +48,4 @@ To complete this task I worked with several presumptions:
 
 - **admin** email: admin@example.com / pass: "password"
 - **customer** email: other@example.com / pass: "password"
+- custom message to users is sent via email so to test it online you will have to sign up with a valid email and activate your account

@@ -3,8 +3,8 @@
 
 # Create users
 User.create!(
-  name: "Admin User",
-  email: "filip.piskur@gmail.com",
+  name: "Mr. Adminsky",
+  email: "admin@example.com",
   password: "password",
   password_confirmation: "password",
   admin: true,
@@ -13,8 +13,8 @@ User.create!(
 )
 
 User.create!(
-  name: "Other User",
-  email: "info@info.info",
+  name: "Other Userowich",
+  email: "other@example.com",
   password: "password",
   password_confirmation: "password",
   activated: true,

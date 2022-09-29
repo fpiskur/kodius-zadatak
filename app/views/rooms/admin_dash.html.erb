@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <h1>Admin dashboard</h1>
+    <h1>Admin dashboard for <%= current_user.name %></h1>
     <div class="message-form">
       <%= form_with(url: message_path(current_user),
                     local: true) do |form| %>

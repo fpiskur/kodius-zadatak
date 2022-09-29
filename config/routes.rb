@@ -13,6 +13,6 @@ Rails.application.routes.draw do
     resources :reservations,        only: [:create]
   end
 
-  post '/users/:id/message', to: 'users#send_custom_message', as: 'message'
+  post 'messages/send_custom_message', to: 'messages#send_custom_message', as: 'message'
 
 end

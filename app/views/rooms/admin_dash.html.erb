@@ -2,7 +2,7 @@
   <div class="col-md-8 col-md-offset-2">
     <h1>Admin dashboard for <%= current_user.name %></h1>
     <div class="message-form">
-      <%= form_with(url: message_path(current_user),
+      <%= form_with(url: message_path,
                     local: true) do |form| %>
         <%= form.label :message, "Send a message to all users currently in the hotel" %>
         <%= form.text_field :message, class: 'form-control' %>

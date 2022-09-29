@@ -2,7 +2,6 @@ class UsersController < ApplicationController
 
   before_action :logged_in_user, only: [:edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update, :destroy]
-  before_action :admin_user,     only: [:custom_message]
 
   def new
     @user = User.new
@@ -38,19 +37,6 @@ class UsersController < ApplicationController
     redirect_to login_url
   end
 
-  def send_custom_message
-    message = params[:message]
-    users = User.joins(:reservations).where("check_in_at <= ? AND check_out_at > ?", Date.today, Date.today)
-    users.each do |user|
-      if !user.admin?
-        user.message = message
-        user.send_custom_message_email
-      end
-    end
-    flash[:success] = "Email sent to all present customers"
-    redirect_to root_url
-  end
-
   private
 
     def user_params
@@ -62,11 +48,6 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to root_url unless current_user?(@user)
-    end
-
-    # Confirms an admin user
-    def admin_user
-      redirect_to root_url unless current_user.admin?
     end
 
 end
